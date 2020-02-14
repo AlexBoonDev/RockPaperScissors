@@ -21,68 +21,60 @@ function computerPlay(){
     return choices[Math.floor(Math.random() * choices.length)];
 }
 
+function resetRound(){
+    round = 0;
+    playerScore = 0;
+    computerScore = 0;
+};
+
 function playRound(playerChoice){
     let computerChoice = computerPlay();
     if (playerChoice == 'rock' && computerChoice == 'scissors') {
         playerScore++;
         roundUpdate.textContent = "You win! Rock beats scissors.";
-    }
-    else if (playerChoice == 'rock' && computerChoice == 'paper') {
+    } else if (playerChoice == 'rock' && computerChoice == 'paper') {
         computerScore++;
         roundUpdate.textContent = "You lose! Paper beats rock.";
-
-    } 
-    else if (playerChoice == 'scissors' && computerChoice == 'paper') {
+    } else if (playerChoice == 'scissors' && computerChoice == 'paper') {
         playerScore++;
         roundUpdate.textContent = "You win! Scissors beats paper.";
-
-    }
-    else if (playerChoice == 'scissors' && computerChoice == 'rock') {
+    } else if (playerChoice == 'scissors' && computerChoice == 'rock') {
         computerScore++;
         roundUpdate.textContent = "You lose! Rock beats scissors.";
-
-    }
-    else if (playerChoice == 'paper' && computerChoice == 'rock') {
+    } else if (playerChoice == 'paper' && computerChoice == 'rock') {
         playerScore++;
         roundUpdate.textContent = "You win! Paper beats rock.";
-
-    }
-    else if (playerChoice == 'paper' && computerChoice == 'scissors') {
+    } else if (playerChoice == 'paper' && computerChoice == 'scissors') {
         computerScore++;
         roundUpdate.textContent = "You lose! Scissors beats paper.";
-
-    }
-    else {
+    } else {
         roundUpdate.textContent = "It's a tie!" + " You both picked " + playerChoice + ".";
     };
 
 
     if (playerScore < 5 && computerScore < 5){
-        score.textContent = 'Round ' + round + ': ' + "You: " + playerScore + "  |  Computer: " + computerScore;
-        resultsDiv.appendChild(score);
+        score.textContent = 'Round ' + round + ' - You: ' + playerScore + "  |  Computer: " + computerScore;
         decision.textContent = "";    
     };
     
     if (computerScore == 5 && playerScore < 5){
-        score.textContent = 'Round ' + round + ': ' + "You: " + playerScore + "  |  Computer: " + computerScore;
-        decision.textContent = "You lose, sorry!";
-        round = 0;
-        playerScore = 0;
-        computerScore = 0;
+        score.textContent = 'Round ' + round + ' - You: ' + playerScore + "  |  Computer: " + computerScore;
+        decision.textContent = "Computer wins, sorry!";
+        resetRound();
     } else if (playerScore == 5 && computerScore < 5){
-        score.textContent = 'Round ' + round + ': ' + "You: " + playerScore + "  |  Computer: " + computerScore;
+        score.textContent = 'Round ' + round + ' - You: ' + playerScore + "  |  Computer: " + computerScore;
         decision.textContent = "You win, congratulations!";
-        round = 0;
-        playerScore = 0;
-        computerScore = 0;
+        resetRound();
     } else if (playerScore == 4 && computerScore == 4) {
-        score.textContent = 'Round ' + round +': ' + "You: " + playerScore + "  |  Computer: " + computerScore;
+        score.textContent = 'Round ' + round + ' - You: ' + playerScore + "  |  Computer: " + computerScore;
         decision.textContent = "Tie breaker!";
     }; 
 
     resultsDiv.appendChild(roundUpdate);
     resultsDiv.appendChild(score);
     resultsDiv.appendChild(decision);
-    round++;
 
+    round++;
 };
+
+
