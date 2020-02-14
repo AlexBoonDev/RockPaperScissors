@@ -15,7 +15,6 @@ const buttons = document.querySelectorAll("button")
     button.addEventListener('click', (e) => {
         playerChoice = button.id;
         playRound();
-        round++;
     });
 });
 
@@ -85,5 +84,6 @@ function playRound(){
     resultsDiv.appendChild(roundUpdate);
     resultsDiv.appendChild(score);
     resultsDiv.appendChild(decision);
+    round++;
 
 };
