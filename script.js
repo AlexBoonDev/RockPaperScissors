@@ -2,6 +2,7 @@
 let playerScore = 0;
 let computerScore = 0;
 let round = 1;
+let pointsToWin = 5;
 
 const resultsDiv = document.querySelector('#resultsBox');
 const score = document.createElement('p');
@@ -52,20 +53,20 @@ function playRound(playerChoice){
     };
 
 
-    if (playerScore < 5 && computerScore < 5){
+    if (playerScore < pointsToWin && computerScore < pointsToWin){
         score.textContent = 'Round ' + round + ' - You: ' + playerScore + "  |  Computer: " + computerScore;
         decision.textContent = "";    
     };
     
-    if (computerScore == 5 && playerScore < 5){
+    if (computerScore == pointsToWin && playerScore < pointsToWin){
         score.textContent = 'Round ' + round + ' - You: ' + playerScore + "  |  Computer: " + computerScore;
         decision.textContent = "Computer wins, sorry!";
         resetRound();
-    } else if (playerScore == 5 && computerScore < 5){
+    } else if (playerScore == pointsToWin && computerScore < pointsToWin){
         score.textContent = 'Round ' + round + ' - You: ' + playerScore + "  |  Computer: " + computerScore;
         decision.textContent = "You win, congratulations!";
         resetRound();
-    } else if (playerScore == 4 && computerScore == 4) {
+    } else if (playerScore == (pointsToWin - 1) && computerScore == (pointsToWin - 1)) {
         score.textContent = 'Round ' + round + ' - You: ' + playerScore + "  |  Computer: " + computerScore;
         decision.textContent = "Tie breaker!";
     }; 
