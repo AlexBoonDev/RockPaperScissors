@@ -1,10 +1,8 @@
 
-let choices = ['rock', 'paper', 'scissors'];
 let playerScore = 0;
 let computerScore = 0;
-let playerChoice = "";
-let computerChoice = "";
 let round = 1;
+
 const resultsDiv = document.querySelector('#resultsBox');
 const score = document.createElement('p');
 const roundUpdate = document.createElement('p');
@@ -13,17 +11,18 @@ const decision = document.createElement('p');
 const buttons = document.querySelectorAll("button")
     buttons.forEach((button) => {
     button.addEventListener('click', (e) => {
-        playerChoice = button.id;
-        playRound();
+        let playerChoice = button.id;
+        playRound(playerChoice);
     });
 });
 
 function computerPlay(){
+    let choices = ['rock', 'paper', 'scissors'];
     return choices[Math.floor(Math.random() * choices.length)];
 }
 
-function playRound(){
-    computerChoice = computerPlay();
+function playRound(playerChoice){
+    let computerChoice = computerPlay();
     if (playerChoice == 'rock' && computerChoice == 'scissors') {
         playerScore++;
         roundUpdate.textContent = "You win! Rock beats scissors.";
